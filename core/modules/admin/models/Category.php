@@ -1,6 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\modules\admin\models;
+
+use yii\behaviors\SluggableBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "category".
@@ -49,4 +52,16 @@ class Category extends \yii\db\ActiveRecord
             'keywords'    => 'Ключевые слова',
         ];
     }
+
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'seo' => [
+                'class'     => SluggableBehavior::class,
+                'attribute' => 'title',
+            ],
+        ]);
+    }
+
+
 }

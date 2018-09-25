@@ -1,21 +1,19 @@
 <?php
 
-use yii\helpers\Html;
+use app\modules\admin\models\Category;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Category */
+/* @var $model app\modules\admin\models\Category */
+/* @var $categories Category[] */
+
 
 $this->title = 'Update Category: ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="category-update container">
+<div class="category-update box">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?= $this->render('_form', ['model' => $model, 'categories' => $categories]) ?>
 
 </div>

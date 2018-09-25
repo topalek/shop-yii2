@@ -1,11 +1,14 @@
 <?php
 
+use app\modules\admin\models\Category;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\CategorySearch */
+/* @var $model app\modules\admin\models\CategorySearch */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $categories Category[] */
+
 ?>
 
 <div class="category-search">

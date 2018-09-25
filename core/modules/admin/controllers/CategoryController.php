@@ -1,9 +1,9 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\admin\controllers;
 
-use app\models\Category;
-use app\models\CategorySearch;
+use app\modules\admin\models\Category;
+use app\modules\admin\models\CategorySearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -21,7 +21,7 @@ class CategoryController extends Controller
     {
         return [
             'verbs' => [
-                'class'   => VerbFilter::className(),
+                'class'   => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -93,7 +93,8 @@ class CategoryController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'model'      => $model,
+            'categories' => $this->getCategoryList(),
         ]);
     }
 
@@ -115,7 +116,8 @@ class CategoryController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+            'model'      => $model,
+            'categories' => $this->getCategoryList(),
         ]);
     }
 
@@ -133,5 +135,10 @@ class CategoryController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function getCategoryList()
+    {
+        return array_merge(['0' => 'Родительская категория'], Category::find()->select(['title', 'id'])->indexBy('id')->asArray()->column());
     }
 }
