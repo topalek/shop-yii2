@@ -4,9 +4,7 @@
 
 $this->title = 'My Yii Application';
 ?>
-<code>
-    <?= app\common\Inflector::slug('Яблочки падали низко, сын впоймал щуку', '_') ?>
-</code>
+
 <div id="slideshow">
     <div>
         <ul class="allinone_bannerRotator_list">

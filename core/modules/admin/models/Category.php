@@ -47,7 +47,7 @@ class Category extends \yii\db\ActiveRecord
             'id'          => 'ID',
             'parent_id'   => 'Родительская категория',
             'slug'        => 'Слаг',
-            'title'       => 'Заголовок',
+            'title'       => 'Название',
             'description' => 'Описание',
             'keywords'    => 'Ключевые слова',
         ];
@@ -61,6 +61,11 @@ class Category extends \yii\db\ActiveRecord
                 'attribute' => 'title',
             ],
         ]);
+    }
+
+    public function getParent()
+    {
+        return $this->hasOne(Category::class, ['id' => 'parent_id']);
     }
 
 

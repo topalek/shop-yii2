@@ -7,31 +7,33 @@ use yii\helpers\Html;
 /* @var $searchModel app\modules\admin\models\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Categories';
+$this->title = 'Категории';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index box">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <div class="box-body">
     <p>
-        <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать новую', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel'  => $searchModel,
         'columns'      => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-            'parent_id',
             'title',
+            [
+                'attribute' => 'parent_id',
+                'value'     => function ($model) {
+                    return ($model->parent) ? $model->parent->title : 'Родительская';
+                },
+            ],
             'description:ntext',
             'keywords',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    </div>
+
 </div>

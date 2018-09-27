@@ -65,7 +65,10 @@ $config = [
             'showScriptName'  => false,
             'rules'           => array_merge(
                 require __DIR__ . '/url.php',
-                require __DIR__ . '/url-local.php'
+                require __DIR__ . '/url-local.php',
+                [
+                    'class' => 'app\components\urlManagerRule',
+                ]
             ),
         ],
 
