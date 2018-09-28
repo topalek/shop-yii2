@@ -63,13 +63,14 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName'  => false,
-            'rules'           => array_merge(
-                require __DIR__ . '/url.php',
-                require __DIR__ . '/url-local.php',
+            'rules'           => [
+                '/admin'                                   => '/admin/default/index',
+                '<ac:login|register|contact|about|logout>' => "site/<ac>",
                 [
                     'class' => 'app\components\urlManagerRule',
-                ]
-            ),
+                ],
+            ]
+
         ],
 
     ],
