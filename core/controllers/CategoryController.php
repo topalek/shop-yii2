@@ -16,6 +16,7 @@ class CategoryController extends BaseController
 {
     public function actionView($slug)
     {
+//        dd($slug);
         $dataProvider = new ActiveDataProvider([
             'query'      => Category::find()->where(['slug' => $slug])->with('children'),
             'pagination' => [

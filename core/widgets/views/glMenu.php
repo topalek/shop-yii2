@@ -12,7 +12,7 @@ use yii\helpers\Url;
 ?>
 
 <li>
-    <a href="<?= Url::to(['category/view', $category['link']]) ?>"><?= $category['title'] ?></a>
+    <a href="<?= Url::to(['/category/view', 'slug' => $category['slug']]) ?>"><?= $category['title'] ?></a>
     <?php if (isset($category['childs'])): ?>
     <ul class="sub-menu">
         <?php endif; ?>

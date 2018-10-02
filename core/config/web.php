@@ -66,9 +66,10 @@ $config = [
             'rules'           => [
                 '/admin'                                   => '/admin/default/index',
                 '<ac:login|register|contact|about|logout>' => "site/<ac>",
-                [
-                    'class' => 'app\components\urlManagerRule',
-                ],
+                'category/<slug:\w+>'                      => "category/view",
+//                [
+//                    'class' => 'app\components\urlManagerRule',
+//                ],
             ]
 
         ],
