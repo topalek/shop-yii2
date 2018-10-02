@@ -54,6 +54,7 @@ class RbacController extends Controller
         $auth->assign($admin, 1);
         $auth->assign($manager, 2);
 
+	    print_r("Rbac initialization complete \n");
     }
 
 }

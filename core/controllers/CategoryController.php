@@ -16,10 +16,10 @@ class CategoryController extends BaseController
 {
     public function actionView($slug)
     {
-//        dd($slug);
+	    $categoryIds  = Category::find()->where(['slug' => $slug])->with('children')->select(['id'])->column();
         $dataProvider = new ActiveDataProvider([
-            'query'      => Category::find()->where(['slug' => $slug])->with('children'),
-            'pagination' => [
+	        'query'      => '',
+	        'pagination' => [
                 'pageSize' => 20,
             ],
         ]);

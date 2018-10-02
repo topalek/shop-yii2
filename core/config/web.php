@@ -61,17 +61,15 @@ $config = [
         'db'           => $db,
 
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName'  => false,
-            'rules'           => [
-                '/admin'                                   => '/admin/default/index',
-                '<ac:login|register|contact|about|logout>' => "site/<ac>",
-                'category/<slug:\w+>'                      => "category/view",
-//                [
-//                    'class' => 'app\components\urlManagerRule',
-//                ],
-            ]
-
+	        'enablePrettyUrl' => true,
+	        'showScriptName'  => false,
+	        'rules'           => array_merge(
+		        require __DIR__ . '/url.php',
+		        require __DIR__ . '/url-local.php'
+	        //[
+	        //    'class' => 'app\components\urlManagerRule',
+	        //]
+	        ),
         ],
 
     ],

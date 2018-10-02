@@ -13,17 +13,17 @@ class m180913_084101_create_user_table extends Migration
     public function safeUp()
     {
         $this->createTable('user', [
-            'id'           => $this->primaryKey(),
-            'email'        => $this->string()->notNull()->comment('E-mail'),
-            'username'     => $this->string()->notNull()->comment('Имя'),
-            'password'     => $this->string()->notNull()->comment('Пароль'),
-            'status'       => $this->smallInteger()->defaultValue(0),
-            'auth_key'     => $this->string()->notNull(),
-            'access_token' => $this->string(),
-            'code'         => $this->string(),
-            'is_email'     => $this->smallInteger()->defaultValue(1),
-            'updated_at'   => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')->comment("Дата оновлення"),
-            'created_at'   => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')->comment('Дата створення'),
+	        'id'           => $this->primaryKey(),
+	        'email'        => $this->string()->notNull()->comment('E-mail'),
+	        'username'     => $this->string()->notNull()->comment('Имя'),
+	        'password'     => $this->string()->notNull()->comment('Пароль'),
+	        'status'       => $this->smallInteger()->defaultValue(0),
+	        'auth_key'     => $this->string()->notNull(),
+	        'access_token' => $this->string(),
+	        'code'         => $this->string(),
+	        'is_email'     => $this->smallInteger()->defaultValue(1),
+	        'updated_at'   => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')->comment("Дата обновления"),
+	        'created_at'   => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')->comment('Дата создания'),
         ]);
 
         $this->insert('user', [
