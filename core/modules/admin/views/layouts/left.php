@@ -30,11 +30,12 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'],
                 'items'   => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Category', 'icon' => 'dashboard', 'url' => ['/admin/category']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    [
+	                ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+	                ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+	                ['label' => 'Категории', 'icon' => 'dashboard', 'url' => ['/admin/category']],
+	                ['label' => 'Товары', 'icon' => 'gift', 'url' => ['/admin/product']],
+	                ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+	                [
                         'label' => 'Some tools',
                         'icon'  => 'share',
                         'url'   => '#',

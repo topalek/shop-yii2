@@ -73,5 +73,10 @@ class Category extends \yii\db\ActiveRecord
         return $this->hasMany(Category::class, ['parent_id' => 'id']);
     }
 
+	public static function getList(){
+		$categories = self::find()->select(['id', 'parent_id', 'title'])->asArray()->all();
+		$categories = ArrayHelper::map($categories, 'id', 'title', 'parent_id');
 
+		return $categories;
+	}
 }
