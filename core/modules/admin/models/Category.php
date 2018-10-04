@@ -25,6 +25,50 @@ class Category extends \yii\db\ActiveRecord
         return 'category';
     }
 
+    public static function getList()
+    {
+        $categories = self::getTree();
+
+        $categories = self::convertToSimpleArray($categories);
+
+        return $categories;
+    }
+
+    public static function getTree()
+    {
+        $cat = self::find()->asArray()->all();
+        $parents = [];
+        foreach ($cat as $i => $item) {
+            $parents[$item['parent_id']][$item['id']] = $item;
+        }
+        $tree = $parents[0];
+        self::generateTree($tree, $parents);
+        return $tree;
+    }
+
+    private static function generateTree(&$tree, $parents)
+    {
+        foreach ($tree as $key => $item) {
+            if (array_key_exists($key, $parents)) {
+                $tree[$key]['children'] = $parents[$key];
+                self::generateTree($tree[$key]['children'], $parents);
+            }
+        }
+    }
+
+    private static function convertToSimpleArray($array)
+    {
+        $resArray = [];
+        if (is_array($array)) {
+            foreach ($array as $below) {
+                $resArray[] = self::convertToSimpleArray($below);
+            }
+        } else {
+            $resArray[] = $array;
+        }
+        return $resArray;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -72,11 +116,4 @@ class Category extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Category::class, ['parent_id' => 'id']);
     }
-
-	public static function getList(){
-		$categories = self::find()->select(['id', 'parent_id', 'title'])->asArray()->all();
-		$categories = ArrayHelper::map($categories, 'id', 'title', 'parent_id');
-
-		return $categories;
-	}
 }
