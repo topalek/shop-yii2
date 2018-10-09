@@ -29,7 +29,7 @@ class Category extends \yii\db\ActiveRecord
     {
         $categories = self::getTree();
 
-        $categories = self::convertToSimpleArray($categories);
+//        $categories = self::convertToSimpleArray($categories);
 
         return $categories;
     }
