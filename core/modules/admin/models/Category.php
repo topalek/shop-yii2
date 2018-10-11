@@ -3,6 +3,7 @@
 namespace app\modules\admin\models;
 
 use yii\behaviors\SluggableBehavior;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -15,7 +16,7 @@ use yii\helpers\ArrayHelper;
  * @property string $description Описание
  * @property string $keywords    Ключевые слова
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -27,11 +28,26 @@ class Category extends \yii\db\ActiveRecord
 
     public static function getList()
     {
-        $categories = self::getTree();
 
-//        $categories = self::convertToSimpleArray($categories);
-
+	    $categories = self::find()->select(['id', 'parent_id', 'title'])->asArray()->all();
+	    $categories = ArrayHelper::map($categories, 'id', 'title');
         return $categories;
+	    $arr = [];
+	    foreach ($categories[0] as $id => $cat){
+		    try {
+			    $arr[$id] = $cat;
+		    }catch (\Exception $e){
+			    dd($cat);
+		    }
+		    foreach ($categories[$id] as $i => $c_cat){
+			    $arr[$i] = '-' . $c_cat;
+		    }
+	    }
+
+	    //$arr = static::generateList($categories);
+
+
+	    return $arr;
     }
 
     public static function getTree()
@@ -56,17 +72,19 @@ class Category extends \yii\db\ActiveRecord
         }
     }
 
-    private static function convertToSimpleArray($array)
+	private static function generateList(&$array, $parent_id = 0)
     {
         $resArray = [];
         if (is_array($array)) {
-            foreach ($array as $below) {
-                $resArray[] = self::convertToSimpleArray($below);
+	        foreach ($array as $cat){
+		        $resArray[] = [$cat['id'], $cat['title']];
             }
-        } else {
-            $resArray[] = $array;
+	        if (array_key_exists('children', $array)){
+		        $resArray[] = self::generateList($array['children']);
+	        }
         }
-        return $resArray;
+
+	    return $resArray;
     }
 
     /**

@@ -27,6 +27,7 @@ use yii\db\ActiveRecord;
 class Product extends ActiveRecord {
 
 	public $images;
+	public $imgFiles;
 	public $categoryId;
 
 	public static function tableName(){
@@ -86,7 +87,7 @@ class Product extends ActiveRecord {
 
 	public function uploadGallery(){
 		if ($this->validate()){
-			foreach ($this->images as $image){
+			foreach ($this->imgFiles as $image){
 				$path = 'uploads/images/store' . $image->baseName . '.' . $image->extension;
 				$image->saveAs($path);
 				$this->attachImage($path, false);
