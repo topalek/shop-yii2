@@ -32,22 +32,22 @@ class Category extends ActiveRecord
 	    $categories = self::find()->select(['id', 'parent_id', 'title'])->asArray()->all();
 	    $categories = ArrayHelper::map($categories, 'id', 'title');
         return $categories;
-	    $arr = [];
-	    foreach ($categories[0] as $id => $cat){
-		    try {
-			    $arr[$id] = $cat;
-		    }catch (\Exception $e){
-			    dd($cat);
-		    }
-		    foreach ($categories[$id] as $i => $c_cat){
-			    $arr[$i] = '-' . $c_cat;
-		    }
-	    }
+//	    $arr = [];
+//	    foreach ($categories[0] as $id => $cat){
+//		    try {
+//			    $arr[$id] = $cat;
+//		    }catch (\Exception $e){
+//			    dd($cat);
+//		    }
+//		    foreach ($categories[$id] as $i => $c_cat){
+//			    $arr[$i] = '-' . $c_cat;
+//		    }
+//	    }
 
 	    //$arr = static::generateList($categories);
 
 
-	    return $arr;
+//	    return $arr;
     }
 
     public static function getTree()

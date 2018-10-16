@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 		<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
 		<?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-		<?= $form->field($model, 'categoryId')->dropDownList(Category::getList(), ['prompt' => '-Выберите категорию-']) ?>
+        <?= $form->field($model, 'category_id')->dropDownList(Category::getList(), ['prompt' => '-Выберите категорию-']) ?>
 
 		<?= $form->field($model, 'price', ['options' => ['class' => 'col-md-6']])->textInput(['maxlength' => true]) ?>
 

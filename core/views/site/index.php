@@ -2,11 +2,8 @@
 
 /* @var $this yii\web\View */
 
-use app\modules\admin\models\Category;
-
 //$this->title = 'My Yii Application';
 ?>
-<?php dd(Category::getList()) ?>
 <div id="slideshow">
     <div>
         <ul class="allinone_bannerRotator_list">
