@@ -134,4 +134,9 @@ class Category extends ActiveRecord
     {
         return $this->hasMany(Category::class, ['parent_id' => 'id']);
     }
+
+    public function getProducts()
+    {
+        return $this->hasMany(Product::class, ['category_id' => 'id']);
+    }
 }
